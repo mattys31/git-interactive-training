@@ -3,29 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>talentOpsLab.learn — Learn Git Interactively</title>
+<title>TalentOps Lab Academy — Learn Git Interactively</title>
 <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root {
   /* ── TalentOps Lab brand palette ── */
   --turquoise:     #00BFA6;
-  --turquoise-dim: #008f7d;
-  --turquoise-lo:  #d4f4ee;
+  --turquoise-dim: #00d8bb;
+  --turquoise-lo:  rgba(0,191,166,0.14);
   --charcoal:      #2B2D42;
-  --charcoal-2:    #1f2135;
+  --charcoal-2:    #15172a;
   --indigo:        #7B61FF;
-  --indigo-lo:     #ece7ff;
+  --indigo-lo:     rgba(123,97,255,0.16);
   --coral:         #FF715B;
-  --coral-lo:      #ffe1da;
+  --coral-lo:      rgba(255,113,91,0.16);
   --light-grey:    #F5F6F7;
 
-  /* ── Semantic surfaces ── */
-  --bg:        #F5F6F7;
-  --bg2:       #FFFFFF;
-  --bg3:       #EBEDEF;
-  --text:      #2B2D42;
-  --text-dim:  #6c6f85;
-  --border:    #dde0e3;
+  /* ── Semantic surfaces (dark) ── */
+  --bg:        #1a1c2e;
+  --bg2:       #2B2D42;
+  --bg3:       #393b56;
+  --text:      #F5F6F7;
+  --text-dim:  #9ea2b8;
+  --border:    #3d3f5a;
 
   /* ── Aliases (preserve existing class semantics) ── */
   --green:     var(--turquoise);
@@ -64,14 +64,27 @@ body {
   flex-shrink: 0;
 }
 .topbar-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   font-family: 'Figtree', sans-serif;
   font-weight: 800;
   font-size: 1.05rem;
-  color: var(--charcoal);
+  color: var(--text);
   letter-spacing: -0.015em;
 }
-.topbar-logo span { color: var(--turquoise); }
-.topbar-logo em { color: var(--text-dim); font-style: normal; font-weight: 500; }
+.topbar-logo img {
+  height: 32px;
+  width: auto;
+  display: block;
+}
+.topbar-logo em {
+  color: var(--text-dim);
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1rem;
+  letter-spacing: -0.01em;
+}
 .topbar-sep { flex:1; }
 .lesson-tabs {
   display: flex;
@@ -138,7 +151,7 @@ body {
   padding: 3px 12px 3px 9px;
   font-size: 0.72rem;
   font-weight: 500;
-  color: var(--indigo);
+  color: #b8a9ff;
 }
 .branch-pill::before { content: '⎇'; font-size: 0.85rem; }
 
@@ -195,9 +208,9 @@ body {
 }
 @keyframes fadeIn { from { opacity:0; transform:translateY(-4px); } to { opacity:1; transform:none; } }
 .file-pill.untracked { background: var(--coral-lo); color: var(--coral); border: 1px solid var(--coral); }
-.file-pill.staged    { background: var(--turquoise-lo); color: var(--turquoise-dim); border: 1px solid var(--turquoise); }
+.file-pill.staged    { background: var(--turquoise-lo); color: var(--turquoise); border: 1px solid var(--turquoise); }
 .file-pill.modified  { background: var(--coral-lo); color: var(--coral); border: 1px solid var(--coral); }
-.file-pill.committed { background: var(--indigo-lo); color: var(--indigo); border: 1px solid var(--indigo); }
+.file-pill.committed { background: var(--indigo-lo); color: #b8a9ff; border: 1px solid var(--indigo); }
 
 /* ── LESSON PANEL (right) ── */
 .lesson-panel {
@@ -238,7 +251,8 @@ body {
   margin-bottom: 18px;
 }
 .lesson-body code {
-  background: var(--charcoal);
+  background: var(--charcoal-2);
+  border: 1px solid var(--border);
   border-radius: 4px;
   padding: 2px 7px;
   color: var(--turquoise);
@@ -246,7 +260,7 @@ body {
   font-size: 0.78rem;
   font-weight: 500;
 }
-.lesson-body strong { color: var(--turquoise-dim); font-weight: 600; }
+.lesson-body strong { color: var(--turquoise); font-weight: 600; }
 
 .task-box {
   background: var(--bg3);
@@ -273,8 +287,8 @@ body {
   color: var(--text-dim);
   transition: color 0.3s;
 }
-.task-item.done { color: var(--turquoise-dim); }
-.task-item.done .task-check { background: var(--turquoise); border-color: var(--turquoise); color: #fff; }
+.task-item.done { color: var(--turquoise); }
+.task-item.done .task-check { background: var(--turquoise); border-color: var(--turquoise); color: var(--charcoal); }
 .task-check {
   width: 16px; height: 16px;
   border: 1.5px solid var(--border);
@@ -285,7 +299,7 @@ body {
   margin-top: 1px;
   transition: all 0.2s;
   font-weight: 700;
-  background: var(--bg2);
+  background: var(--bg);
 }
 
 .hint-box {
@@ -295,12 +309,13 @@ body {
   padding: 12px 14px;
   font-size: 0.78rem;
   line-height: 1.6;
-  color: var(--indigo);
+  color: #b8a9ff;
   margin-bottom: 14px;
 }
-.hint-box strong { color: var(--indigo); display: block; margin-bottom: 4px; font-weight: 700; }
+.hint-box strong { color: #b8a9ff; display: block; margin-bottom: 4px; font-weight: 700; }
 .hint-box code {
-  background: var(--charcoal);
+  background: var(--charcoal-2);
+  border: 1px solid var(--border);
   color: var(--turquoise);
   border-radius: 3px;
   padding: 1px 6px;
@@ -329,7 +344,7 @@ body {
   display: inline-block;
   background: var(--indigo-lo);
   border: 1px solid var(--indigo);
-  color: var(--indigo);
+  color: #b8a9ff;
   font-size: 0.65rem;
   padding: 3px 10px;
   border-radius: 20px;
@@ -490,7 +505,10 @@ body {
 <body>
 
 <div class="topbar">
-  <div class="topbar-logo">talentOps<span>Lab</span><em>.learn</em></div>
+  <div class="topbar-logo">
+    <img src="logo.png" alt="TalentOps Lab">
+    <em>Academy</em>
+  </div>
   <div class="topbar-sep"></div>
   <div class="lesson-tabs" id="lessonTabs"></div>
 </div>
@@ -1175,7 +1193,7 @@ function renderGraph() {
     // empty state
     const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
     text.setAttribute('x', 20); text.setAttribute('y', 40);
-    text.setAttribute('fill', '#6c6f85'); text.setAttribute('font-family', 'JetBrains Mono,monospace');
+    text.setAttribute('fill', '#9ea2b8'); text.setAttribute('font-family', 'JetBrains Mono,monospace');
     text.setAttribute('font-size', '11');
     text.textContent = state.initialized ? 'No commits yet. Stage files and commit!' : 'Run git init to start tracking.';
     svg.appendChild(text);
@@ -1236,7 +1254,7 @@ function renderGraph() {
     const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
     circle.setAttribute('cx', c._x); circle.setAttribute('cy', c._y);
     circle.setAttribute('r', c.isMerge ? 10 : 8);
-    circle.setAttribute('fill', isHead ? col : '#FFFFFF');
+    circle.setAttribute('fill', isHead ? col : '#2B2D42');
     circle.setAttribute('stroke', col);
     g.appendChild(circle);
 
@@ -1244,7 +1262,7 @@ function renderGraph() {
       const star = document.createElementNS('http://www.w3.org/2000/svg', 'text');
       star.setAttribute('x', c._x); star.setAttribute('y', c._y + 4);
       star.setAttribute('text-anchor', 'middle');
-      star.setAttribute('fill', isHead ? '#fff' : col); star.setAttribute('font-size', '10');
+      star.setAttribute('fill', isHead ? '#2B2D42' : col); star.setAttribute('font-size', '10');
       star.textContent = '⊕';
       g.appendChild(star);
     }
@@ -1255,7 +1273,7 @@ function renderGraph() {
     hashT.setAttribute('x', c._x + 14); hashT.setAttribute('y', c._y - 6);
     hashT.setAttribute('font-family', 'JetBrains Mono,monospace');
     hashT.setAttribute('font-size', '9');
-    hashT.setAttribute('fill', '#6c6f85');
+    hashT.setAttribute('fill', '#9ea2b8');
     hashT.textContent = c.short;
     g.appendChild(hashT);
 
@@ -1264,7 +1282,7 @@ function renderGraph() {
     msgT.setAttribute('x', c._x + 14); msgT.setAttribute('y', c._y + 8);
     msgT.setAttribute('font-family', 'JetBrains Mono,monospace');
     msgT.setAttribute('font-size', '10');
-    msgT.setAttribute('fill', '#2B2D42');
+    msgT.setAttribute('fill', '#F5F6F7');
     const shortMsg = c.msg.length > 30 ? c.msg.slice(0,30)+'…' : c.msg;
     msgT.textContent = shortMsg;
     g.appendChild(msgT);
@@ -1284,7 +1302,7 @@ function renderGraph() {
     const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
     rect.setAttribute('x', x - 28); rect.setAttribute('y', y - 36);
     rect.setAttribute('width', b.length * 7 + 12); rect.setAttribute('height', 16);
-    rect.setAttribute('rx', 8); rect.setAttribute('fill', active ? col : '#FFFFFF');
+    rect.setAttribute('rx', 8); rect.setAttribute('fill', active ? col : '#2B2D42');
     rect.setAttribute('stroke', col); rect.setAttribute('stroke-width', '1');
     svg.appendChild(rect);
 
@@ -1494,7 +1512,7 @@ input.focus();
 
 // Welcome message
 setTimeout(() => {
-  termPrint('Welcome to talentOpsLab.learn 🌿', 'success');
+  termPrint('Welcome to TalentOps Lab Academy 🌿', 'success');
   termPrint('Type "help" to see all commands, or follow the lesson on the right.', 'info');
   termPrint('Use ↑↓ arrow keys to navigate command history. Tab to autocomplete.', 'info');
   termPrint('', 'out');
